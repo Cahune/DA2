@@ -1,0 +1,17 @@
+@media (max-width: 46.1875em) {
+    .signup-header {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 16px;
+    }
+
+    input {
+        height: 30px;
+        width: 250px;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: solid transparent; 
+        box-shadow: 0 0 0 1px #adadad;
+      }
+    
+}

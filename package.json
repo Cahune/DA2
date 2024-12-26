@@ -1,0 +1,71 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@react-oauth/google": "^0.12.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@tippyjs/react": "^4.2.6",
+    "@vis.gl/react-google-maps": "^1.4.2",
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "formik": "^2.4.6",
+    "fuse.js": "^7.0.0",
+    "leaflet": "^1.9.4",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-cluster": "^2.1.0",
+    "react-router-dom": "^6.27.0",
+    "react-scripts": "5.0.1",
+    "swiper": "^11.1.14",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "frontend": "npm start",
+    "backend": "cd src/data && node server.js",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "nodemon": "^3.1.7"
+  },
+  "author": "",
+  "license": "ISC"
+}

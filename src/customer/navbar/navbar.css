@@ -1,0 +1,166 @@
+.home-navbar {
+    height: 75px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.home-navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.home-nav-container {
+    width: 100%;
+
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 11px 20px;
+    margin: 0 0 0 -18px;
+}
+
+.home-logo-left {
+    float: left;
+    align-self: flex-start;
+}
+
+.home-nav-logo {
+    height: 60px;   
+    width: auto;
+    display: inline-block;
+    cursor: pointer;
+    padding-right: 15px;
+
+}
+
+.home-nav-logo2 {
+    height: 60px;   
+    width: auto;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    border-left: 1px solid #bbb;
+    padding-left: 15px;
+}
+
+.nav-items {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-items a {
+    border: 1px solid #e01e5a;
+    color: #e01e5a;
+    padding: 5px 6px;
+    display: inline-block;
+}
+
+.nav-items a:hover {
+    border: 1px solid #e01e5a;
+    background-color: #e01e5a;
+    color: #FFF;
+}
+
+.nav-items-btn {
+    display: flex;
+    gap: 10px;
+}
+
+
+.nav-button {
+    display: block;
+    cursor: pointer;
+    align-items: center;
+    background-color: #219599;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+    line-height: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+}
+
+.nav-button:hover {
+    background-color: #783301;
+}
+
+.nav-button-avt {
+    display: none;
+    border-radius: 50%;
+    background-color: #219599;
+    color: white;
+    border: 1px solid white;
+    padding: 4px 8px;
+    font-size: 16px;
+    width: 40px;
+}
+
+.nav-menu-logout {
+    position: absolute;
+    top: -2px;
+    right: -88px;
+    background-color: white;
+    color: black;
+    padding: 4px 0px;
+    width: 170px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 5px 0px black;
+}
+
+.nav-user-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.nav-user-logout:hover {
+    background-color: #80808042;
+    cursor: pointer;
+}
+
+.nav-user-logout .user-logout-text {
+    font-weight: 350;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.user-logout-icon {
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+}
+
+.nav-user-img {
+    width: 33.2px;
+    height: 33.2px;
+    border-radius: 50%;
+    display: flex;             
+    justify-content: center; 
+    align-items: center;     
+    font-size: 16px;
+}
+
+.nav-user-button {
+    display: flex;           
+    align-items: center;     
+    cursor: pointer;
+    gap: 5px;
+}
+
+
+.nav-user-account {
+    color: black;
+}

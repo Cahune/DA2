@@ -1,0 +1,155 @@
+.signup-bg {
+  background-color: #f8f9fa;
+} 
+
+.signup {
+  display: flex;
+  justify-content: space-around;
+  padding: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signup-container {
+  border: 2px solid black;
+  padding: 48px;
+  border-radius: 10px;
+  border: solid transparent; 
+  box-shadow: 0 0 0 1px #c8c7c7;
+  background-color: #fff;
+}
+
+.signup-header {
+  font-size: 31px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.form-outline {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.star-force {
+  color: red;
+}
+.text-input,
+.password-setting {
+  height: 42px;
+  width: 360px;
+  border-radius: 5px;
+  border: solid transparent; 
+  box-shadow: 0 0 0 1px #adadad;
+}
+
+.text-input {
+  padding: 8px 16px;
+}
+
+.password-setting {
+  padding: 8px 22px 8px 16px;
+}
+
+.text-input:focus,
+.password-setting:focus {
+  outline: none; 
+  border-color: rgba(33, 149, 153, 0.4); /* Đổi màu viền khi click, với độ trong suốt 70% */
+  box-shadow: 0 0 10px rgba(33, 149, 153, 0.5); /* Tạo hiệu ứng viền sáng với độ trong suốt 50% */
+}
+
+.signup-password {
+  position: relative;
+}
+
+.btn-eye {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  height: 18px;
+  top: 34%;
+  left: 93%;
+  cursor: pointer;
+}
+
+.form-check {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.form-check-input {
+  width: 16px;
+  height: 16px; 
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #219599; /* Thay đổi màu của checkbox */
+}
+
+.signup-btn {
+  height: 42px;
+  width: 360px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #219599;
+  cursor: pointer;
+  border-color: rgba(33, 149, 153, 0.0);
+}
+
+.signup-btn:hover {
+  background-color: #1e8487;
+}
+
+
+.text-login {
+  margin-top: 48px;
+  text-align: center;
+  color:#434343;
+}
+
+.error-message {
+  background-color: #d4111e;
+  color: white;
+  position: absolute;
+  top: 65px;
+  left: 7px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.icon-up {
+  color: #d4111e;
+  position: absolute;
+  top: -11px;
+  font-size: 16px;
+}
+
+.form-check {
+  position: relative;
+}
+
+.error-message-last {
+  background-color: #d4111e;
+  color: white;
+  position: absolute;
+  top: 22px;
+  left: 19px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}

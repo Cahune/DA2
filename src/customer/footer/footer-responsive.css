@@ -1,0 +1,10 @@
+@media (max-width: 46.1875em) {
+    .footer-container {
+      max-width: 350px;
+    }
+  }
+  @media (min-width:  46.1875em) and (max-width: 68.74em) {
+    .footer-container {
+      max-width: 700px;
+    }
+  }

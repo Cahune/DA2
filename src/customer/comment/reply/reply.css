@@ -1,0 +1,53 @@
+.reply {
+
+    align-items: center;
+    margin-bottom: 0.5rem;
+    margin-left: 2rem;
+}
+
+.reply-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reply-content {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-radius: 0.375rem;
+    color: #6B7280;
+    font-size: 14px;
+}
+
+.reply-username {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.75rem;
+    color: #fff; /* Gray 900 */
+}
+
+.reply-avatar {
+    margin-right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px; /* Full rounded */
+}
+
+.reply-text {
+    font-size: 16px;
+    color: #fff; /* Gray 600 */
+}
+
+.setting-for-reply {
+    display: flex;
+    position: relative; /* Thêm thuộc tính này để dropdown căn chỉnh đúng */
+}
+
+.reply-settings-button {
+    display: flex;
+    justify-self: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}

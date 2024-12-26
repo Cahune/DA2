@@ -1,0 +1,16 @@
+@media (max-width: 46.1875em) {
+    .home-nav-container {
+        overflow: hidden;
+        width: 108%;
+        
+    }
+    .nav-items-icon {
+        display: none !important;
+    }
+    .home-navbar .nav-button {
+        display: none !important;
+    }
+    .home-navbar .nav-button-avt {
+        display: block !important;
+    }   
+}

@@ -1,0 +1,32 @@
+
+.introduce {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('../../../../images/Introduce.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    height: 530px;
+    position: relative;
+}
+
+.introduce-container {
+    padding-block: 100px;
+    padding-inline-start: 20px;
+    padding-inline-end: 100px;
+    display: inline-block;
+    text-align: left;
+    max-width: 50%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) 260px, rgba(0, 0, 0, 0) 580px);
+    transition: 0.2s;
+}
+
+.introduce-title {
+    font-size: 28px;   
+}
+
+.introduce-subtext {
+    max-width: 324px;
+    margin: 20px 0 54px 0;
+}

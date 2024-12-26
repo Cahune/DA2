@@ -1,0 +1,167 @@
+.comment {
+    padding: 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 50vw;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.comment-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.comment-username {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.75rem;
+    font-size: 0.875rem;
+    color: #fff; /* Gray 900 */
+}
+
+.comment-avatar {
+    margin-right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+}
+
+.comment-time {
+    font-size: 0.875rem;
+    color: #6B7280; /* Gray 600 */
+}
+
+.comment-settings-button {
+    display: flex;
+    justify-self: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.dropdown-btn {
+    fill: #ccc; /* Màu mặc định */
+    transition: fill 0.3s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+.dropdown-btn:hover {
+    fill: white; /* Màu khi button được click */
+}
+
+.setting-for-cmt {
+    display: flex;
+    position: relative; /* Thêm thuộc tính này để dropdown căn chỉnh đúng */
+}
+
+.settings-dropdown {
+    display: none; /* Ẩn dropdown */
+    position: absolute; /* Thay đổi để dropdown không làm co giãn header */
+    top: 100%; /* Đặt dropdown bên dưới nút cài đặt */
+    left: 0; /* Đặt dropdown căn lề trái */
+    z-index: 100;
+    background-color: white;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.settings-dropdown.show {
+    display: block; /* Hiển thị dropdown khi class 'show' được thêm */
+}
+
+.settings-list {
+    padding: 0.25rem 0;
+    font-size: 0.875rem;
+    color: #374151; /* Gray 700 */
+}
+
+.settings-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+}
+
+.settings-item:hover {
+    background-color: #F3F4F6; /* Gray 100 */
+}
+
+.comment-text {
+    color: #fff; /* Gray 400 */
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.reply-button {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #6B7280; /* Gray 500 */
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.reply-button:hover {
+    color: #fff;
+}
+
+.setting-btn {
+    fill: #ccc
+}
+
+.setting-btn:hover {
+    fill: #fff
+}
+
+.reply-input {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius:10px;
+    padding: 0.25rem 0.5rem; 
+    background-color: #1f2937; 
+    border-color: #374151; 
+    color: #fff;
+}
+
+.reply-input::placeholder {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ; /* Thay đổi font chữ tại đây */
+    color: #6B7280; /* Màu sắc của placeholder */
+    opacity: 1; /* Đảm bảo opacity là 1 nếu bạn muốn placeholder rõ ràng */
+}
+
+.reply-form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.submit-reply-button {
+    background-color: #0f813a; /* Red 400 */
+    border-radius: 5px;
+    color: white; /* Màu chữ */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 5px 4px;
+    font-weight: 550;
+}
+
+.submit-reply-button:hover {
+    background-color: #ef8223; /* Red 500 */
+}

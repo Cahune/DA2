@@ -1,0 +1,35 @@
+@media (min-width: 700px) {
+    .header-introduce{
+        max-width: 730px;
+    }
+
+    .header-search {
+        max-width: 500px;
+        margin: -2px 110px;
+    }
+}
+
+@media (max-width: 500px) {
+    .header-introduce {
+        margin: 0;
+        padding: 100px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Căn giữa theo chiều dọc */
+        
+    }
+
+    .header-search {
+        width: 100%;
+    }
+
+    .header-search-item {
+        padding: 25px;
+
+    }
+
+    .header-search-btn {
+        padding: 0px 3px;
+
+    }
+}

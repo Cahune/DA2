@@ -1,0 +1,157 @@
+.map-container {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.map-infor {
+  flex: 1; 
+  background-color: #fff;
+  border-radius: 3%;
+  border: 1px solid rgb(243, 243, 243);
+}
+
+.map-detail {
+  flex: 2;
+    height: 100vh;
+    width: 100%; 
+}
+
+.leaflet-container {
+    height: 90vh;
+    width: 90%;
+    border-radius: 2rem;
+  }
+
+  .cluster-icon {
+    background-color: #333;
+    height: 2em;
+    width: 2em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    box-shadow: 0 0 0px 5px #fff;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .input {
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 8px;
+    background-color: rgb(243, 243, 243);
+    height: 45px;
+    width:95%;
+    padding-left: 10px;
+  }
+
+  .switch-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .switch-button {
+    background-color: rgb(243, 243, 243);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .switch-button:hover {
+  background-color: #cef3ae; 
+ }
+
+  .switch-button:active {
+  background-color: #8aec34; 
+ }
+
+ .button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Label */
+.button-container label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Select dropdown */
+.button-container select {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 2px solid #219599;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button-container select:hover {
+  border-color: #219599;
+  box-shadow: 0 0 8px rgba(102, 220, 226, 0.7);
+}
+
+.button-container select:focus {
+  border-color: #219599;
+  box-shadow: 0 0 10px rgba(102, 220, 226, 0.7);
+}
+
+/* Button */
+.button-container .search-button {
+  background-color: #219599;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-container .search-button:hover {
+  background-color: #cef3ae;
+  transform: scale(1.05);
+  color: black;
+  cursor: pointer;
+
+}
+
+.button-container .search-button:active {
+  background-color: #8aec34;
+  transform: scale(0.98);
+}
+
+.button-container select option:checked {
+  background-color: #219599; 
+  color: white; 
+}
+
+.route-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+
+
+  
