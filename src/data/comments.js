@@ -26,7 +26,7 @@ router.get("/comments/:placeId", async (req, res) => {
   const { placeId } = req.params;
   try {
     // Tìm tất cả bình luận của một địa điểm cụ thể
-    const comments = await Comment.find({ placeId: placeId });
+    const comments = await Comment.find({ placeId: { $eq: placeId } });
 
     if (comments.length === 0) {
       return res.status(404).json({ message: "Không tìm thấy bình luận nào cho địa điểm này." });
