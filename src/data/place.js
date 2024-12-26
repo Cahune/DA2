@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Place } = require('../models/place'); // Model Place
+const { Place } = require("../config/config"); // Model Place
 
 // Endpoint để tìm kiếm trong collection 'place' theo tên
 router.get('/search-by-name', async (req, res) => {
