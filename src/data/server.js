@@ -4,10 +4,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 // Import các route
-const placeRoutes = require('./api/place');
-const taxiRoutes = require('./api/taxis');
-const commentRoutes = require('./api/comments');
-const hotelRoutes = require('./api/hotels');
+const placeRoutes = require('./place');
+const taxiRoutes = require('./taxis');
+const commentRoutes = require('./comments');
+const hotelRoutes = require('./hotels');
 const authRoutes = require('./api/signup-login');
 
 const app = express();
