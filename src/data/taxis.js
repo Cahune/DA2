@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Taxi } = require('../models/taxi'); // Model Taxi
+const { Taxi } = require("../config/config");
 
 // Endpoint để lấy tất cả taxi liên quan đến một địa điểm (theo placeId)
 router.get('/:placeId', async (req, res) => {
