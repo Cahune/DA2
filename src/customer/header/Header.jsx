@@ -55,7 +55,7 @@ const Header = () => {
         }
     
         const timeoutId = setTimeout(() => {
-            api.get(`/api/place/search-by-name?name=${encodeURIComponent(destInput)}`)
+            api.get(`/place/search-by-name?name=${encodeURIComponent(destInput)}`)
                 .then(response => {
                     const fuse = new Fuse([...data, ...response.data], FUSE_OPTIONS);
                     const results = fuse.search(destInput);
