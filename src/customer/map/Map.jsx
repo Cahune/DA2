@@ -14,9 +14,6 @@ import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import Fuse from "fuse.js";
 import SuggestItem from "../header/SuggestItem";
 
-require('dotenv').config({path: '../../.env'});
-const MAP_API_KEY = process.env.MAP_API_KEY;
-
 const Map = () => {
   const { id } = useParams(); // Lấy ID từ URL
   const [loading, setLoading] = useState(false);
@@ -39,6 +36,8 @@ const Map = () => {
   
   const [routeDistance, setRouteDistance] = useState(0); // Quãng đường
   const [routeDuration, setRouteDuration] = useState(0); // Thời gian
+
+  const MAP_API_KEY = process.env.MAP_API_KEY;
 
   const FUSE_OPTIONS = {
     shouldSort: true,
