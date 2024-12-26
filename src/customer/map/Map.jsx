@@ -14,6 +14,9 @@ import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import Fuse from "fuse.js";
 import SuggestItem from "../header/SuggestItem";
 
+require('dotenv').config({path: '../../.env'});
+const MAP_API_KEY = process.env.MAP_API_KEY;
+
 const Map = () => {
   const { id } = useParams(); // Lấy ID từ URL
   const [loading, setLoading] = useState(false);
@@ -112,7 +115,7 @@ const Map = () => {
     }
     try {
       const response = await fetch(
-        `http://localhost:7000/api/place/search-by-name?name=${encodeURIComponent(input)}`
+        `https://da2-ghy9.onrender.com/api/place/search-by-name?name=${encodeURIComponent(input)}`
       );
       const data = await response.json();
       const fuse = new Fuse(data, FUSE_OPTIONS);
@@ -137,7 +140,7 @@ const Map = () => {
   };  
 
   const fetchRoute = async (start, end, vehicleType = "driving-car") => {
-    const apiKey = "5b3ce3597851110001cf6248cd4743c17c7b4a5b820d27abd12b7bc9"; // Thay bằng API key của bạn
+    const apiKey = MAP_API_KEY; 
     const url = `https://api.openrouteservice.org/v2/directions/${vehicleType}?api_key=${apiKey}&start=${start[1]},${start[0]}&end=${end[1]},${end[0]}`;
   
     try {
