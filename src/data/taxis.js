@@ -40,7 +40,7 @@ app.get('/taxis/:placeId', async (req, res) => {
     }
 });
 
-const port = 8001;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
