@@ -1,46 +1,19 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const { Taxi } = require("../config/config"); // Đảm bảo bạn export đúng model Taxi từ config
-
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors()); 
-
-require('dotenv').config({path: '../../.env'});
-const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
-
-// Connect to MongoDB
-mongoose
-  .connect(MONGODB_CONNECT_URI)
-  .then(() => {
-    console.log("Database Connected Successfully");
-  })
-  .catch((err) => {
-    console.log("Database connection failed:", err);
-  });
+const express = require('express');
+const router = express.Router();
+const { Taxi } = require('../models/taxi'); // Model Taxi
 
 // Endpoint để lấy tất cả taxi liên quan đến một địa điểm (theo placeId)
-app.get('/taxis/:placeId', async (req, res) => {
-    try {
-        const { placeId } = req.params;
-        
-        const ObjectId = mongoose.Types.ObjectId;
-        const taxis = await Taxi.find({ places: new ObjectId(placeId) });
-
-        if (taxis.length === 0) {
-          return res.status(404).json({ message: "Không tìm thấy taxi nào cho địa điểm này." });
-        }
-
-        res.status(200).json(taxis); // Gửi dữ liệu taxi về phía client
-    } catch (error) {
-        console.error("Lỗi khi lấy taxi:", error);
-        res.status(500).json({ error: "Có lỗi xảy ra khi lấy taxi." });
+router.get('/:placeId', async (req, res) => {
+  const { placeId } = req.params;
+  try {
+    const taxis = await Taxi.find({ places: placeId });
+    if (taxis.length === 0) {
+      return res.status(404).json({ message: 'No taxis found for this place.' });
     }
+    res.json(taxis);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching taxis.' });
+  }
 });
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = router;
