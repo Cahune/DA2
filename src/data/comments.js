@@ -1,28 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+const router = express.Router();
 const { Comment } = require("../config/config"); 
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors()); 
-
-require('dotenv').config({path: '../../.env'});
-const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
-
-// Connect to MongoDB
-mongoose
-  .connect(MONGODB_CONNECT_URI)
-  .then(() => {
-    console.log("Database Connected Successfully");
-  })
-  .catch((err) => {
-    console.log("Database connection failed:", err);
-  });
-
-// Create a new comment
-app.post("/comments/:placeId/createComment", async (req, res) => {
+router.post("/comments/:placeId/createComment", async (req, res) => {
   try {
     const { placeId } = req.params; // Nhận placeId từ URL
     const { username, comment } = req.body;
@@ -42,7 +22,7 @@ app.post("/comments/:placeId/createComment", async (req, res) => {
 });
 
 // Get all comments for a specific place
-app.get("/comments/:placeId", async (req, res) => {
+router.get("/comments/:placeId", async (req, res) => {
   try {
     const { placeId } = req.params;
 
@@ -61,7 +41,7 @@ app.get("/comments/:placeId", async (req, res) => {
 });
 
 // Add a reply to a comment
-app.post("/comments/:commentId/reply", async (req, res) => {
+router.post("/comments/:commentId/reply", async (req, res) => {
   try {
       const { commentId } = req.params;
 
@@ -90,7 +70,7 @@ app.post("/comments/:commentId/reply", async (req, res) => {
 });
 
 // Xóa bình luận
-app.delete("/comments/:commentId", async (req, res) => {
+router.delete("/comments/:commentId", async (req, res) => {
   try {
     const { commentId } = req.params;
     console.log("id là ", commentId)
@@ -108,7 +88,7 @@ app.delete("/comments/:commentId", async (req, res) => {
 });
 
 // Chỉnh sửa bình luận
-app.put("/comments/:commentId", async (req, res) => {
+router.put("/comments/:commentId", async (req, res) => {
   try {
     const { commentId } = req.params;
     const { comment } = req.body;
@@ -132,7 +112,7 @@ app.put("/comments/:commentId", async (req, res) => {
 });
 
 // Chỉnh sửa phản hồi
-app.put("/comments/reply/:replyId", async (req, res) => {
+router.put("/comments/reply/:replyId", async (req, res) => {
   try {
     const { replyId } = req.params;
     const replyObjectId = new mongoose.Types.ObjectId(replyId); // Sử dụng new
@@ -157,7 +137,7 @@ app.put("/comments/reply/:replyId", async (req, res) => {
 });
 
 // Xóa phản hồi
-app.delete("/comments/reply/:replyId", async (req, res) => {
+router.delete("/comments/reply/:replyId", async (req, res) => {
   try {
       const { replyId } = req.params;
 
@@ -184,10 +164,4 @@ app.delete("/comments/reply/:replyId", async (req, res) => {
   }
 });
 
-
-
-// Start the server
-const port = 8000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports = router;
