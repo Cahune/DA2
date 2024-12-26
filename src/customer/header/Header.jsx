@@ -48,20 +48,28 @@ const Header = () => {
     };
 
 
-    useEffect(() => {
-        if (!destInput.trim()) {
-            setSearchSuggestions([]);
-            return;
-        } //nếu trống thì thoát khỏi hàm
-        const timeoutId = setTimeout(() => { //trì hoãn việc gọi API
-            api.get(`http://localhost:7000/api/place/search-by-name?name=${encodeURIComponent(destInput)}`)
-                .then(response => {
-                    const fuse = new Fuse([...data, ...response.data], FUSE_OPTIONS);
-                    const results = fuse.search(destInput);
-                    const suggested = results.map(result => result.item);
-                    setSearchSuggestions(suggested); //cập nhật gợi ý 
-                });
-        }, 500);
+   useEffect(() => {
+    if (!destInput.trim()) {
+        setSearchSuggestions([]);
+        return;
+    }
+
+    const timeoutId = setTimeout(() => {
+        api.get(`/api/place/search-by-name?name=${encodeURIComponent(destInput)}`)
+            .then(response => {
+                const fuse = new Fuse([...data, ...response.data], FUSE_OPTIONS);
+                const results = fuse.search(destInput);
+                const suggested = results.map(result => result.item);
+                setSearchSuggestions(suggested);
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+}, [destInput]);
+
 
         return () => {
             clearTimeout(timeoutId);
