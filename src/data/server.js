@@ -8,7 +8,7 @@ const placeRoutes = require('./place');
 const taxiRoutes = require('./taxis');
 const commentRoutes = require('./comments');
 const hotelRoutes = require('./hotels');
-const authRoutes = require('./api/signup-login');
+const authRoutes = require('./signup-login');
 
 const app = express();
 
