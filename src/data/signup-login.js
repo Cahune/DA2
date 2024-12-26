@@ -1,28 +1,10 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
-const cors = require('cors');
+const router = express.Router();
 const { User } = require("../config/config"); // Thay thế đường dẫn này với nơi bạn lưu mô hình User và Comment
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors()); // Enable CORS to allow React app to connect
-
-require('dotenv').config({path: '../../.env'});
-const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
-
-
-// Connect to the database
-mongoose.connect(MONGODB_CONNECT_URI)
-    .then(() => {
-        console.log("Database Connected Successfully");
-    }).catch((err) => {
-        console.log("Database connection failed:", err);
-    });
-
 // Register User
-app.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
     try {
         const { fullName, email, password } = req.body;
 
@@ -54,7 +36,7 @@ app.post("/signup", async (req, res) => {
 });
 
 // Login User
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -76,8 +58,4 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// Start the server
-const port = 5000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+module.exports = router;
