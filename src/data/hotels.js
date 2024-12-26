@@ -1,27 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const { Hotel } = require("../config/config"); // Đảm bảo bạn export đúng model Taxi từ config
+const router = express.Router();
+const { Hotel } = require("../config/config"); 
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors()); // Enable CORS to allow frontend apps to connect
-
-require('dotenv').config({path: '../../.env'});
-const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
-
-// Connect to MongoDB
-mongoose
-  .connect(MONGODB_CONNECT_URI)
-  .then(() => {
-    console.log("Database Connected Successfully");
-  })
-  .catch((err) => {
-    console.log("Database connection failed:", err);
-  });
-
-app.get('/hotels/:placeId', async (req, res) => {
+router.get('/hotels/:placeId', async (req, res) => {
     try {
         const { placeId } = req.params;
         
@@ -39,7 +20,4 @@ app.get('/hotels/:placeId', async (req, res) => {
     }
 });
 
-const port = 8002;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports = router;
