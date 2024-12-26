@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { Comment } = require("../config/config"); 
+const { Comment } = require("../config/config"); // Model Comment
 
-router.post("/comments/:placeId/createComment", async (req, res) => {
+// Tạo một bình luận mới
+router.post("/:placeId/createComment", async (req, res) => {
   try {
-    const { placeId } = req.params; // Nhận placeId từ URL
+    const { placeId } = req.params;
     const { username, comment } = req.body;
 
     const newComment = new Comment({
@@ -21,12 +22,11 @@ router.post("/comments/:placeId/createComment", async (req, res) => {
   }
 });
 
-// Get all comments for a specific place
-router.get("/comments/:placeId", async (req, res) => {
-  const { placeId } = req.params;
+// Lấy tất cả bình luận của một địa điểm
+router.get("/:placeId", async (req, res) => {
   try {
-    // Tìm tất cả bình luận của một địa điểm cụ thể
-    const comments = await Comment.find({ placeId: { $eq: placeId } });
+    const { placeId } = req.params;
+    const comments = await Comment.find({ placeId });
 
     if (comments.length === 0) {
       return res.status(404).json({ message: "Không tìm thấy bình luận nào cho địa điểm này." });
@@ -39,60 +39,12 @@ router.get("/comments/:placeId", async (req, res) => {
   }
 });
 
-// Add a reply to a comment
-router.post("/comments/:commentId/reply", async (req, res) => {
-  try {
-      const { commentId } = req.params;
-
-      const { username, reply } = req.body;
-
-      const comment = await Comment.findById(commentId);
-      if (!comment) {
-          return res.status(404).json({ message: "Không tìm thấy bình luận" });
-      }
-
-      const newReply = {
-          username,
-          commentId: comment._id,
-          reply,
-          createdAt: new Date(),
-      };
-
-      comment.replies.push(newReply);
-      await comment.save();
-
-      res.status(201).json({ message: "Phản hồi đã được thêm thành công", newReply });
-  } catch (error) {
-      console.error("Lỗi khi phản hồi bình luận:", error);
-      res.status(500).json({ error: "Có lỗi xảy ra khi phản hồi bình luận." });
-  }
-});
-
-// Xóa bình luận
-router.delete("/comments/:commentId", async (req, res) => {
-  try {
-    const { commentId } = req.params;
-    console.log("id là ", commentId)
-    // Tìm và xóa bình luận theo ID
-    const deletedComment = await Comment.findByIdAndDelete(commentId);
-    if (!deletedComment) {
-      return res.status(404).json({ message: "Không tìm thấy bình luận" });
-    }
-
-    res.status(200).json({ message: "Bình luận đã được xóa thành công" });
-  } catch (error) {
-    console.error("Lỗi khi xóa bình luận:", error);
-    res.status(500).json({ error: "Có lỗi xảy ra khi xóa bình luận." });
-  }
-});
-
-// Chỉnh sửa bình luận
-router.put("/comments/:commentId", async (req, res) => {
+// Chỉnh sửa một bình luận
+router.put("/:commentId", async (req, res) => {
   try {
     const { commentId } = req.params;
     const { comment } = req.body;
 
-    // Tìm bình luận và cập nhật nội dung
     const updatedComment = await Comment.findByIdAndUpdate(
       commentId,
       { comment },
@@ -110,21 +62,62 @@ router.put("/comments/:commentId", async (req, res) => {
   }
 });
 
+// Xóa một bình luận
+router.delete("/:commentId", async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const deletedComment = await Comment.findByIdAndDelete(commentId);
+
+    if (!deletedComment) {
+      return res.status(404).json({ message: "Không tìm thấy bình luận" });
+    }
+
+    res.status(200).json({ message: "Bình luận đã được xóa thành công" });
+  } catch (error) {
+    console.error("Lỗi khi xóa bình luận:", error);
+    res.status(500).json({ error: "Có lỗi xảy ra khi xóa bình luận." });
+  }
+});
+
+// Thêm phản hồi vào bình luận
+router.post("/:commentId/reply", async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const { username, reply } = req.body;
+
+    const comment = await Comment.findById(commentId);
+    if (!comment) {
+      return res.status(404).json({ message: "Không tìm thấy bình luận" });
+    }
+
+    const newReply = {
+      username,
+      reply,
+      createdAt: new Date(),
+    };
+
+    comment.replies.push(newReply);
+    await comment.save();
+
+    res.status(201).json({ message: "Phản hồi đã được thêm thành công", newReply });
+  } catch (error) {
+    console.error("Lỗi khi thêm phản hồi:", error);
+    res.status(500).json({ error: "Có lỗi xảy ra khi thêm phản hồi." });
+  }
+});
+
 // Chỉnh sửa phản hồi
-router.put("/comments/reply/:replyId", async (req, res) => {
+router.put("/reply/:replyId", async (req, res) => {
   try {
     const { replyId } = req.params;
-    const replyObjectId = new mongoose.Types.ObjectId(replyId); // Sử dụng new
-
     const { reply } = req.body;
 
-    // Tìm và cập nhật phản hồi
-    const comment = await Comment.findOne({ "replies._id": replyObjectId });
+    const comment = await Comment.findOne({ "replies._id": replyId });
     if (!comment) {
       return res.status(404).json({ message: "Không tìm thấy phản hồi" });
     }
 
-    const replyToUpdate = comment.replies.id(replyObjectId);
+    const replyToUpdate = comment.replies.id(replyId);
     replyToUpdate.reply = reply;
     await comment.save();
 
@@ -136,30 +129,22 @@ router.put("/comments/reply/:replyId", async (req, res) => {
 });
 
 // Xóa phản hồi
-router.delete("/comments/reply/:replyId", async (req, res) => {
+router.delete("/reply/:replyId", async (req, res) => {
   try {
-      const { replyId } = req.params;
+    const { replyId } = req.params;
 
-      // Chuyển đổi replyId thành ObjectId
-      const replyObjectId = new mongoose.Types.ObjectId(replyId); // Sử dụng new
+    const comment = await Comment.findOne({ "replies._id": replyId });
+    if (!comment) {
+      return res.status(404).json({ message: "Không tìm thấy phản hồi" });
+    }
 
-      // Tìm và xóa phản hồi theo ID
-      const comment = await Comment.findOne({ "replies._id": replyObjectId });
+    comment.replies = comment.replies.filter((reply) => reply._id.toString() !== replyId);
+    await comment.save();
 
-      if (!comment) {
-          return res.status(404).json({ message: "Không tìm thấy phản hồi" });
-      }
-
-      // Xóa phản hồi bằng cách sử dụng pull
-      comment.replies = comment.replies.filter(reply => reply._id.toString() !== replyId);
-      
-      // Lưu lại comment sau khi đã cập nhật
-      await comment.save();
-
-      res.status(200).json({ message: "Phản hồi đã được xóa thành công" });
+    res.status(200).json({ message: "Phản hồi đã được xóa thành công" });
   } catch (error) {
-      console.error("Lỗi khi xóa phản hồi:", error);
-      res.status(500).json({ error: "Có lỗi xảy ra khi xóa phản hồi." });
+    console.error("Lỗi khi xóa phản hồi:", error);
+    res.status(500).json({ error: "Có lỗi xảy ra khi xóa phản hồi." });
   }
 });
 
