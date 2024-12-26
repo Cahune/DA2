@@ -13,21 +13,20 @@ const connectDB = async () => {
   }
 };
 
-export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    const placeName = req.query.name;
+app.get('/api/searchByName', async (req, res) => {
+    const placeName = req.query.name; // Lấy tên từ query
     try {
-      await connectDB(); // Kết nối MongoDB
-      const places = await Place.find({
-        name: { $regex: placeName, $options: 'i' },
-      });
-      res.status(200).json(places);
+        if (!placeName) {
+            return res.status(400).json({ error: "Thiếu tham số 'name'" });
+        }
+
+        const places = await Place.find({
+            name: { $regex: placeName, $options: 'i' } // Tìm kiếm tên
+        });
+
+        res.status(200).json(places); // Trả về danh sách kết quả
     } catch (err) {
-      console.error('Error fetching places:', err);
-      res.status(500).json({ error: 'Error fetching places' });
+        console.error('Error fetching places:', err);
+        res.status(500).json({ error: 'Error fetching places' });
     }
-  } else {
-    res.setHeader('Allow', ['GET']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-}
+});
