@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -25,7 +24,7 @@ const Search = () => {
       if (id) {
         setLoading(true); // Bắt đầu tải dữ liệu
         try {
-          const response = await fetch(`http://localhost:7000/api/place/${id}`); // Lấy dữ liệu từ backend
+          const response = await fetch(`https://da2-ghy9.onrender.com/api/place/${id}`); // Lấy dữ liệu từ backend
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
