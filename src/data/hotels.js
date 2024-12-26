@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Hotel } = require("../config/config"); 
 
-router.get('/hotels/:placeId', async (req, res) => {
+router.get('/:placeId', async (req, res) => {
     try {
         const { placeId } = req.params;
         
