@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./taxi.css";
 
 const Taxi = ({ placeId }) => {
     const [taxis, setTaxis] = useState([]);
@@ -10,8 +11,6 @@ const Taxi = ({ placeId }) => {
                 console.error("Thiếu placeId");
                 return;
             }
-
-            console.log("Fetching taxis for placeId:", placeId);
 
             try {
                 const response = await fetch(`http://localhost:8001/taxis/${placeId}`);
@@ -33,8 +32,8 @@ const Taxi = ({ placeId }) => {
     }
 
     return (
-        <div>
-            <h2>Danh sách Taxi cho địa điểm: {placeId}</h2>
+        <div className='taxi-list'>
+            <h2>Danh sách taxi cho địa điểm</h2>
             {taxis.length === 0 ? (
                 <p>Không có taxi nào cho địa điểm này</p>
             ) : (

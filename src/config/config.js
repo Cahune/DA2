@@ -53,18 +53,40 @@ const taxiSchema = new mongoose.Schema({
     name: { 
         type: String, 
         required: true 
-    }, // Tên của hãng taxi
+    }, 
     phoneNumber: { 
         type: String, 
         required: true 
-    }, // Số điện thoại của taxi
+    }, 
     places: [
         { 
             type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Place' // Tham chiếu đến collection Place
+            ref: 'Place' 
         }
     ] 
 });
+
+const hotelSchema = new mongoose.Schema({
+    name: { 
+        type: String, 
+        required: true
+    },
+    phoneNumber: { 
+        type: String,
+        required: true
+    },
+    places: [
+        {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Place' 
+        }
+    ],
+    address: [
+        {
+            type: String
+        }
+    ], 
+  });
 
 const Place = mongoose.model('Place', placeSchema);
             
@@ -74,9 +96,12 @@ const User = mongoose.model('User', userSchema);
 
 const Taxi = mongoose.model('Taxi', taxiSchema);
 
+const Hotel = mongoose.model('Hotel', taxiSchema);
+
 module.exports = {
     User,
     Comment,
     Place,
-    Taxi
+    Taxi,
+    Hotel
 };

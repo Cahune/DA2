@@ -1,0 +1,13 @@
+.hotel-list ul {
+    padding: 0;            
+  }
+  
+  .hotel-list li {
+    text-align: left;      
+    margin-bottom: 10px;   
+  }
+  
+  .hotel-list p {
+    margin: 0;        
+  }
+  

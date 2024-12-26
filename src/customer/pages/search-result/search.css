@@ -1,5 +1,5 @@
 .search-bg {
-  background-color: #e8eded ;
+  background-color: #fff ;
 }
 .search-container {
     max-width: 1200px;
@@ -73,4 +73,15 @@
 
 .description{
   font-family:Arial, Helvetica, sans-serif;
+  padding-bottom: 20px;
+}
+
+.services {
+  display: flex;
+}
+
+.services > * {
+  flex: 1;         /* Các phần tử con sẽ chia đều chiều rộng */
+  padding: 20px;   /* Thêm padding nếu cần */
+  text-align: center;  /* Căn giữa nội dung */
 }

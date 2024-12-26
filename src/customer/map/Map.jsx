@@ -338,13 +338,16 @@ const handleSearchRoute = async (vehicleType) => {
           </button>
         </div>
 
-        <div className="route-info">
-          {routeDistance > 0 && routeDuration > 0 && (
-            <p>
-              Quãng đường: {(routeDistance / 1000).toFixed(2)} km<br />
-              Thời gian dự kiến: {(routeDuration / 60).toFixed(0)} phút
-            </p>
-          )}
+        <div className="route-info-parent">
+          <div className="route-info">
+            {routeDistance > 0 && routeDuration > 0 && (
+              <p>
+                Quãng đường: {(routeDistance / 1000).toFixed(2)} km<br />
+                <br />
+                Thời gian dự kiến: {(routeDuration / 3600).toFixed(0)} giờ {(routeDuration % 60).toFixed(0)} phút
+              </p>
+            )}
+          </div>
         </div>
 
       </div>

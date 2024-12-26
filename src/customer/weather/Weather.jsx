@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./weather.css"
 
 const WeatherForecast = ({ geocode }) => {
   const [forecast, setForecast] = useState(null);
@@ -42,17 +43,18 @@ const WeatherForecast = ({ geocode }) => {
 
   return (
     <div className="weather-info">
-      <h4>Dự báo thời tiết trong 5 ngày tới:</h4>
+      <h2>Dự báo thời tiết trong 5 ngày tới:</h2>
       {forecast && forecast.length > 0 ? (
         <div>
           {forecast.map((entry, index) => (
             <div key={index} className="forecast-item">
-              <h5>{new Date(entry.dt * 1000).toLocaleDateString()}</h5>
+              <h3>{new Date(entry.dt * 1000).toLocaleDateString()}</h3>
               <p>Nhiệt độ: {entry.main.temp}°C</p>
               <p>Mô tả: {entry.weather[0].description}</p>
               <img
                 src={`http://openweathermap.org/img/wn/${entry.weather[0].icon}.png`}
                 alt="icon thời tiết"
+                class="weather-icon"
               />
             </div>
           ))}

@@ -12,6 +12,7 @@ import CommentForm from '../../comment/commentForm/CommentForm';
 import Map from '../../map/Map';
 import WeatherForecast from '../../weather/Weather';
 import Taxi from '../../taxi/Taxi';
+import Hotel from '../../hotel/Hotel';
 import "./search.css";
 
 const Search = () => {
@@ -40,8 +41,6 @@ const Search = () => {
 
     fetchPlaceData();
   }, [id]); // Chỉ phụ thuộc vào id
-
-  console.log(place.geocode)
 
   const isVideo = (url) => {
     return url && (url.endsWith('.mp4') || url.endsWith('.webm') || url.endsWith('.ogg') || url.includes('youtube.com') || url.includes('youtu.be'));
@@ -94,8 +93,11 @@ const Search = () => {
                 ))}
                 </div>
                 <Map />
-                <Taxi placeId={id} />
-                {place.geocode && <WeatherForecast geocode={place.geocode} />}
+                <div className='services'>
+                  <WeatherForecast geocode={place.geocode} />
+                  <Taxi placeId={id} />
+                  <Hotel placeId={id} />
+                </div>
               </>
             ) : (
               <p>Không tìm thấy địa điểm nào.</p>

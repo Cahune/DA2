@@ -1,0 +1,13 @@
+.taxi-list ul {
+    padding: 0;            
+  }
+  
+  .taxi-list li {
+    text-align: left;      
+    margin-bottom: 10px;   
+  }
+  
+  .taxi-list p {
+    margin: 0;        
+  }
+  
