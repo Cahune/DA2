@@ -23,9 +23,8 @@ router.post("/comments/:placeId/createComment", async (req, res) => {
 
 // Get all comments for a specific place
 router.get("/comments/:placeId", async (req, res) => {
+  const { placeId } = req.params;
   try {
-    const { placeId } = req.params;
-
     // Tìm tất cả bình luận của một địa điểm cụ thể
     const comments = await Comment.find({ placeId });
 
