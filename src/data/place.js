@@ -4,9 +4,10 @@ const cors = require("cors");
 const { Place } = require("../config/config"); // Đảm bảo rằng bạn đã định nghĩa model Place trong config
 
 const app = express();
-const port = 7000;
 require('dotenv').config({path: '../../.env'});
 const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
+const PORT = process.env.PORT;
+
 
 // Middleware để xử lý JSON và URL-encoded dữ liệu
 app.use(express.json());
@@ -58,6 +59,6 @@ app.get('/api/place/:id', async (req, res) => {
 });
 
 // Lắng nghe trên cổng 7000
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
