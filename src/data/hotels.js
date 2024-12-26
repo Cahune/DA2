@@ -8,9 +8,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors()); // Enable CORS to allow frontend apps to connect
 
+require('dotenv').config({path: '../../.env'});
+const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
+
 // Connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/Cahu")
+  .connect(MONGODB_CONNECT_URI)
   .then(() => {
     console.log("Database Connected Successfully");
   })

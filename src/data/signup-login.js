@@ -9,8 +9,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors()); // Enable CORS to allow React app to connect
 
+require('dotenv').config({path: '../../.env'});
+const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
+
+
 // Connect to the database
-mongoose.connect("mongodb://localhost:27017/Cahu")
+mongoose.connect(MONGODB_CONNECT_URI)
     .then(() => {
         console.log("Database Connected Successfully");
     }).catch((err) => {

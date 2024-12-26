@@ -5,6 +5,8 @@ const { Place } = require("../config/config"); // Đảm bảo rằng bạn đã
 
 const app = express();
 const port = 7000;
+require('dotenv').config({path: '../../.env'});
+const MONGODB_CONNECT_URI = process.env.MONGODB_CONNECT_URI;
 
 // Middleware để xử lý JSON và URL-encoded dữ liệu
 app.use(express.json());
@@ -13,7 +15,7 @@ app.use(cors()); // Enable CORS to allow frontend apps to connect
 
 // Connect to MongoDB using Mongoose
 mongoose
-  .connect("mongodb://localhost:27017/Cahu", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGODB_CONNECT_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Database Connected Successfully");
   })
