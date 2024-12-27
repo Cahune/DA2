@@ -38,6 +38,7 @@ const Map = () => {
   const [routeDuration, setRouteDuration] = useState(0); // Thời gian
 
   const MAP_API_KEY = process.env.MAP_API_KEY;
+  console.log("MAP_API_KEY:", MAP_API_KEY);
 
   const FUSE_OPTIONS = {
     shouldSort: true,
