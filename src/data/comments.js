@@ -83,14 +83,18 @@ router.delete('/:commentId', async (req, res) => {
         }
 
         // Xóa bình luận
-        await Comment.findByIdAndDelete(commentId);
-        return res.status(200).json({ message: "Bình luận đã bị xóa" });
-
-    } catch (error) {
-        console.error("Lỗi khi xóa bình luận:", error);
-        return res.status(500).json({ message: "Lỗi server" });
-    }
-});
+        const deletedComment = await Comment.findByIdAndDelete(commentId);
+        if (!deletedComment) {
+          return res.status(404).json({ message: "Không tìm thấy bình luận" });
+        }
+    
+        res.status(200).json({ message: "Bình luận đã được xóa thành công" });
+    
+        } catch (error) {
+            console.error("Lỗi khi xóa bình luận:", error);
+            return res.status(500).json({ message: "Lỗi server" });
+        }
+    });
 
 // Thêm phản hồi vào bình luận
 router.post("/:commentId/reply", async (req, res) => {
