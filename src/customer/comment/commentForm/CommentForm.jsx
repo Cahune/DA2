@@ -111,7 +111,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
       
     const handleEditComment = async (commentId, newComment) => {
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/comment/${commentId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -155,7 +155,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         if (!confirmDelete) return;
     
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comment/comments/${commentId}`, {
                 method: "DELETE",
             });
     
