@@ -7,9 +7,11 @@ router.post("/:placeId/createComment", async (req, res) => {
   try {
     const { placeId } = req.params;
     const { username, comment } = req.body;
+    const placeObjectId = mongoose.Types.ObjectId(placeId);
+
 
     const newComment = new Comment({
-      placeId,
+      placeId: placeObjectId,
       username,
       comment,
     });
@@ -63,7 +65,7 @@ router.put("/:commentId", async (req, res) => {
 });
 
 // Xóa một bình luận
-router.delete('/:commentId', async (req, res) => {
+router.delete('/comment/:commentId', async (req, res) => {
     const { commentId } = req.params;
     const { userId } = req.user;  // userId lấy từ JWT hoặc session
 
