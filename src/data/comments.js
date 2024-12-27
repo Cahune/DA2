@@ -63,7 +63,7 @@ router.put("/:commentId", async (req, res) => {
 });
 
 // Xóa một bình luận
-router.delete('/comments/:commentId', async (req, res) => {
+router.delete('/:commentId', async (req, res) => {
     const { commentId } = req.params;
     const { userId } = req.user;  // userId lấy từ JWT hoặc session
 
