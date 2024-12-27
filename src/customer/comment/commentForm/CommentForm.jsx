@@ -139,7 +139,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
           
     const handleDeleteComment = async (commentId) => {
         const commentToDelete = comments.find(c => c._id === commentId);
-        
+        console.log("id", commentId);
         // Kiểm tra xem comment có tồn tại và nếu người dùng không phải là người tạo bình luận
         if (!commentToDelete) {
             alert("Bình luận không tồn tại.");
