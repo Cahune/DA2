@@ -111,7 +111,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
       
     const handleEditComment = async (commentId, newComment) => {
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/comment/${commentId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
