@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Lưu người dùng mới
-        const newUser = new User({ name: fullName, email: email, password: hashedPassword });
+        const newUser = new User({ name: fullName, email: email, password: hashedPassword, role: 'user' });
         await newUser.save();
 
         res.status(201).json({ message: "Đăng ký thành công" });
