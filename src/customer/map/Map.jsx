@@ -37,6 +37,8 @@ const Map = () => {
   const [routeDistance, setRouteDistance] = useState(0); // Quãng đường
   const [routeDuration, setRouteDuration] = useState(0); // Thời gian
 
+  const dotenv = require('dotenv');
+  dotenv.config({path: '../../../.env'});
   const MAP_API_KEY = process.env.MAP_API_KEY;
   console.log("MAP_API_KEY:", MAP_API_KEY);
 
