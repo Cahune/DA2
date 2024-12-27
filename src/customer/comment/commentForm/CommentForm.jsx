@@ -138,6 +138,19 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
     };
           
     const handleDeleteComment = async (commentId) => {
+        const commentToDelete = comments.find(c => c._id === commentId);
+        
+        // Kiểm tra xem comment có tồn tại và nếu người dùng không phải là người tạo bình luận
+        if (!commentToDelete) {
+            alert("Bình luận không tồn tại.");
+            return;
+        }
+    
+        if (commentToDelete.username !== username) {
+            alert("Bạn chỉ có thể xóa bình luận của chính mình!");
+            return;
+        }
+    
         const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa bình luận này không?");
         if (!confirmDelete) return;
     
@@ -151,11 +164,11 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
             }
     
             setComments((prev) => prev.filter(comment => comment._id !== commentId));
-            
         } catch (error) {
             console.error("Lỗi khi xóa bình luận:", error);
         }
     };
+
     
     // Lấy danh sách bình luận khi component được mount
     useEffect(() => {
