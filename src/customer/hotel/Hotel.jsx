@@ -13,7 +13,7 @@ const Hotel = ({ placeId }) => {
             }
 
             try {
-                const response = await fetch(`http://localhost:8002/hotels/${placeId}`);
+                const response = await fetch(`https://da2-ghy9.onrender.com/api/hotels/${placeId}`);
                 if (!response.ok) {
                     throw new Error('k thấy');
                 }
