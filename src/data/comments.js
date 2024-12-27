@@ -66,34 +66,19 @@ router.put("/:commentId", async (req, res) => {
 
 // Xóa một bình luận
 router.delete('/:commentId', async (req, res) => {
-    const { commentId } = req.params;
-    const { userId } = req.user;  // userId lấy từ JWT hoặc session
-
     try {
-        // Tìm bình luận để kiểm tra chủ sở hữu
-        const comment = await Comment.findById(commentId);
+    const { commentId } = req.params;
 
-        if (!comment) {
-            return res.status(404).json({ message: "Bình luận không tồn tại" });
-        }
+    const deletedComment = await Comment.findByIdAndDelete(commentId);
+    if (!deletedComment) {
+      return res.status(404).json({ message: "Không tìm thấy bình luận" });
+    }
 
-        // Kiểm tra xem người dùng có quyền xóa bình luận hay không
-        if (comment.username !== req.user.username && req.user.role !== 'admin') {
-            return res.status(403).json({ message: "Bạn chỉ có thể xóa bình luận của chính mình!" });
-        }
-
-        // Xóa bình luận
-        const deletedComment = await Comment.findByIdAndDelete(commentId);
-        if (!deletedComment) {
-          return res.status(404).json({ message: "Không tìm thấy bình luận" });
-        }
-    
-        res.status(200).json({ message: "Bình luận đã được xóa thành công" });
-    
-        } catch (error) {
-            console.error("Lỗi khi xóa bình luận:", error);
-            return res.status(500).json({ message: "Lỗi server" });
-        }
+    res.status(200).json({ message: "Bình luận đã được xóa thành công" });
+  } catch (error) {
+    console.error("Lỗi khi xóa bình luận:", error);
+    res.status(500).json({ error: "Có lỗi xảy ra khi xóa bình luận." });
+  }
     });
 
 // Thêm phản hồi vào bình luận
