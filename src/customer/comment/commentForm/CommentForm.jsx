@@ -15,6 +15,9 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
             alert("Bình luận không được để trống!");
             return;
         }
+
+        console.log("ten nguoi",username);
+        console.log("nd",reply);
     
         try {
             const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}/reply`, {
