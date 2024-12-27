@@ -16,6 +16,11 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
             return;
         }
 
+        if (!username) {
+            alert("Vui lòng đăng nhập để bình luận!");
+            return; // Ngừng thực hiện nếu chưa đăng nhập
+        }
+
         console.log("ten nguoi",username);
         console.log("nd",reply);
     
