@@ -51,7 +51,7 @@ const Login = () => {
     if (valid) {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:5000/login', {
+        const response = await fetch('https://da2-ghy9.onrender.com/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
