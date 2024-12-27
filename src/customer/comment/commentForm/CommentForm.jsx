@@ -23,6 +23,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
 
         console.log("ten nguoi",username);
         console.log("nd",reply);
+        console.log("nd",commentId);
     
         try {
             const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}/reply`, {
