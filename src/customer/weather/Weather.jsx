@@ -8,7 +8,7 @@ const WeatherForecast = ({ geocode }) => {
 
   // Hàm lấy dự báo thời tiết
   const fetchWeatherForecast = async (latitude, longitude) => {
-    const apiKey = "c65fe08a0e0c1be9689c8a561a78f476"; // Thay bằng API Key của bạn
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY; // Thay bằng API Key của bạn
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
 
     try {
