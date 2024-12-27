@@ -92,6 +92,7 @@ router.post("/:commentId/reply", async (req, res) => {
 
     const newReply = {
       username,
+      commentId: comment._id,
       reply,
       createdAt: new Date(),
     };
