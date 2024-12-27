@@ -10,7 +10,7 @@ const placeSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true }, // Tên đầy đủ của người dùng
     email: { type: String, required: true, unique: true }, // Email phải là duy nhất
-    password: { type: String, required: true }
+    password: { type: String, required: true },
     role: { type: String, required: true }
 });
 
