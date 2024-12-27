@@ -17,7 +17,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         }
     
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/comments/${commentId}/reply`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}/reply`, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
        
     const handleEditReply = async (replyId, newReply) => {
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/comments/reply/${replyId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         if (!confirmDelete) return;
     
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/comments/reply/${replyId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
                 method: 'DELETE',
             });
     
@@ -106,7 +106,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
       
     const handleEditComment = async (commentId, newComment) => {
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/comments/${commentId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -137,7 +137,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         if (!confirmDelete) return;
     
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/comments/${commentId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}`, {
                 method: "DELETE",
             });
     
@@ -161,7 +161,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
             }
 
             try {
-                const response = await fetch(`https://da2-ghy9.onrender.com/comments/${placeId}`);
+                const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${placeId}`);
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
@@ -190,7 +190,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         }
     
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/comments/${placeId}/createComment`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${placeId}/createComment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
