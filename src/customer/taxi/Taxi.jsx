@@ -13,7 +13,7 @@ const Taxi = ({ placeId }) => {
             }
 
             try {
-                const response = await fetch(`http://localhost:8001/taxis/${placeId}`);
+                const response = await fetch(`https://da2-ghy9.onrender.com/api/taxis/${placeId}`);
                 if (!response.ok) {
                     throw new Error('k thấy');
                 }
