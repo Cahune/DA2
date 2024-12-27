@@ -155,7 +155,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         if (!confirmDelete) return;
     
         try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/api/comment/comments/${commentId}`, {
+            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/comment/${commentId}`, {
                 method: "DELETE",
             });
     
