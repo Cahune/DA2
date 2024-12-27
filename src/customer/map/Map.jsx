@@ -70,7 +70,7 @@ const Map = () => {
       if (id) {
         setLoading(true);
         try {
-          const response = await fetch(`http://localhost:7000/api/place/${id}`);
+          const response = await fetch(`https://da2-ghy9.onrender.com/api/place/${id}`);
           if (!response.ok) {
             throw new Error(`Lỗi HTTP! status: ${response.status}`);
           }
