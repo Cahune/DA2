@@ -68,7 +68,7 @@ const Signup = () => {
     if (valid) {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:5000/signup', {
+        const response = await fetch('https://da2-ghy9.onrender.com/api/auth/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ fullName, email, password }),
