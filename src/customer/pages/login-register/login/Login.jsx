@@ -59,6 +59,7 @@ const Login = () => {
         });
   
         const result = await response.json();
+        console.log("rs", result);
         setLoading(false);
   
         if (response.ok) {
