@@ -15,6 +15,7 @@ const Login = () => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
   const [buttonClicked, setButtonClicked] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);  // State to manage "Remember me"
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const Login = () => {
           const { name } = result;
           setUserName(name); // Store the user's name in state
           localStorage.setItem('userFullName', name);
-         
+          localStorage.setItem('role', role);
       
           // Lưu email và mật khẩu nếu "Nhớ mật khẩu" được chọn
           if (rememberMe) {
