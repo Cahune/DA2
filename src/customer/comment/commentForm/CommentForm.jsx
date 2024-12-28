@@ -8,7 +8,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
     const [comment, setComment] = useState("");   // Bình luận mới
     const [username, setUsername] = useState(localStorage.getItem('userFullName') || ""); // Lấy username từ localStorage
     const [userAvatar, setUserAvatar] = useState(localStorage.getItem('userAvatar') || ''); // Lấy avatar nếu có
-
+    const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || "");
     
     const handleReply = async (commentId, reply) => {
         if (!reply.trim()) {
@@ -140,13 +140,15 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
     const handleDeleteComment = async (commentId) => {
         const commentToDelete = comments.find(c => c._id === commentId);
         console.log("id", commentId);
-        // Kiểm tra xem comment có tồn tại và nếu người dùng không phải là người tạo bình luận
+    
+        // Kiểm tra xem comment có tồn tại
         if (!commentToDelete) {
             alert("Bình luận không tồn tại.");
             return;
         }
     
-        if (commentToDelete.username !== username) {
+        // Nếu người dùng không phải admin, chỉ cho phép xóa bình luận của chính họ
+        if (userRole !== "admin" && commentToDelete.username !== username) {
             alert("Bạn chỉ có thể xóa bình luận của chính mình!");
             return;
         }
@@ -168,6 +170,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
             console.error("Lỗi khi xóa bình luận:", error);
         }
     };
+
 
     
     // Lấy danh sách bình luận khi component được mount
