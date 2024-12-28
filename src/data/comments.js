@@ -7,11 +7,9 @@ router.post("/:placeId/createComment", async (req, res) => {
   try {
     const { placeId } = req.params;
     const { username, comment } = req.body;
-    const placeObjectId = mongoose.Types.ObjectId(placeId);
-
 
     const newComment = new Comment({
-      placeId: placeObjectId,
+      placeId,
       username,
       comment,
     });
