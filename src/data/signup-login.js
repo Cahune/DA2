@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
             return res.status(400).json({ error: "Sai mật khẩu" });
         }
 
-        res.status(200).json({ message: "Đăng nhập thành công", name: user.name });
+        res.status(200).json({ message: "Đăng nhập thành công", name: user.name, role: user.role });
 
     } catch (error) {
         console.error("Lỗi trong quá trình đăng nhập:", error);
