@@ -25,7 +25,7 @@ const Reply = ({ reply, onEditReply, onDeleteReply }) => {
                         <p className="reply-username">
                             <img
                                 className="reply-avatar"
-                                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                src="https://topdanangcity.com/wp-content/uploads/2024/09/avatar-trang-1Ob2zMM.jpg"
                                 alt="User Avatar"
                             />
                             {reply?.username}
