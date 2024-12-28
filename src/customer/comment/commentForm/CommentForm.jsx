@@ -108,51 +108,48 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
     };
 
     
-    const handleDeleteReply = async (replyId, commentId) => {
-    const comment = comments.find(comment => comment._id === commentId);
-    
-    // Kiểm tra nếu phản hồi tồn tại trong bình luận
-        const replyToDelete = comment?.replies.find(reply => reply._id === replyId);
-        console.log(replyId);
-        if (!replyToDelete) {
-            alert("Phản hồi không tồn tại.");
-            return;
+    const handleDeleteReply = async (replyId) => {
+    // Tìm phản hồi trong tất cả các bình luận
+    const replyToDelete = comments
+        .flatMap(comment => comment.replies) // Tìm tất cả các phản hồi
+        .find(reply => reply._id === replyId);
+
+    // Kiểm tra xem phản hồi có tồn tại không
+    if (!replyToDelete) {
+        alert("Phản hồi không tồn tại.");
+        return;
+    }
+
+    // Kiểm tra quyền xóa (chỉ người tạo phản hồi hoặc admin có quyền xóa)
+    if (userRole !== "admin" && replyToDelete.username !== username) {
+        alert("Bạn chỉ có thể xóa phản hồi của chính mình!");
+        return;
+    }
+
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phản hồi này không?");
+    if (!confirmDelete) return;
+
+    try {
+        const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
         }
-    
-        // Kiểm tra quyền xóa (chỉ cho phép xóa phản hồi của chính mình hoặc của admin)
-        if (userRole !== "admin" && replyToDelete.username !== username) {
-            alert("Bạn chỉ có thể xóa phản hồi của chính mình!");
-            return;
-        }
-    
-        const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phản hồi này không?");
-        if (!confirmDelete) return;
-    
-        try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
-                method: 'DELETE',
-            });
-    
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-    
-            // Cập nhật lại danh sách bình luận sau khi xóa phản hồi
-            setComments((prevComments) =>
-                prevComments.map((comment) => {
-                    if (comment._id === commentId) {
-                        return {
-                            ...comment,
-                            replies: comment.replies.filter(reply => reply._id !== replyId),
-                        };
-                    }
-                    return comment;
-                })
-            );
-        } catch (error) {
-            console.error("Lỗi khi xóa phản hồi:", error);
-        }
-    };
+
+        // Cập nhật lại danh sách bình luận sau khi xóa phản hồi
+        setComments((prevComments) =>
+            prevComments.map((comment) => ({
+                ...comment,
+                replies: comment.replies.filter(reply => reply._id !== replyId),
+            }))
+        );
+    } catch (error) {
+        console.error("Lỗi khi xóa phản hồi:", error);
+    }
+};
+
       
     const handleEditComment = async (commentId, newComment) => {
         const commentToEdit = comments.find(comment => comment._id === commentId);
