@@ -82,6 +82,9 @@ const Navbar = () => {
                                     <div className="nav-user-logout" onClick={() => navigate('/')}>
                                         <div className="user-logout-text">Lịch sử bình luận</div>
                                     </div>
+                                    <div className="nav-user-logout" onClick={() => navigate('/')}>
+                                        <div className="user-logout-text">Quản lý tài khoản</div>
+                                    </div>
                                     <div className="nav-user-logout" onClick={handleLogoutClick}>
                                         <div className="user-logout-text">Đăng xuất</div>
                                     </div>
