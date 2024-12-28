@@ -8,7 +8,7 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
     const [comment, setComment] = useState("");   // Bình luận mới
     const [username, setUsername] = useState(localStorage.getItem('userFullName') || ""); // Lấy username từ localStorage
     const [userAvatar, setUserAvatar] = useState(localStorage.getItem('userAvatar') || ''); // Lấy avatar nếu có
-    const [userRole, setUserRole] = useState(localStorage.getItem('userRole') || "");
+    const [userRole, setUserRole] = useState(localStorage.getItem('role') || "");
     
     const handleReply = async (commentId, reply) => {
         if (!reply.trim()) {
