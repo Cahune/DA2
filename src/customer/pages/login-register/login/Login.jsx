@@ -67,6 +67,7 @@ const Login = () => {
           setUserName(name); // Store the user's name in state
           localStorage.setItem('userFullName', name);
           localStorage.setItem('role', role);
+          console.log("role",role);
       
           // Lưu email và mật khẩu nếu "Nhớ mật khẩu" được chọn
           if (rememberMe) {
