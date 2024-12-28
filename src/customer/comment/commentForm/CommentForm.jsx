@@ -281,6 +281,9 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
                     username
                 }),
             });
+
+            console.log(comment);
+            console.log(username);
     
             if (!response.ok) {
                 throw new Error("Network response was not ok");
