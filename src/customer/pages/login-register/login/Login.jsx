@@ -63,8 +63,9 @@ const Login = () => {
   
         if (response.ok) {
           // Đăng nhập thành công
-          const { name } = result;
+          const { name, role } = result;
           setUserName(name); // Store the user's name in state
+          setRole(role);
           localStorage.setItem('userFullName', name);
           localStorage.setItem('role', role);
           console.log("role",role);
