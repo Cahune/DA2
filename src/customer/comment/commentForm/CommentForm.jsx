@@ -53,63 +53,123 @@ const CommentForm = ({ placeId }) => { // Nhận placeId từ props
         }
     };
        
-    const handleEditReply = async (replyId, newReply) => {
+    const handleEditReply = async (replyId, newReply, commentId) => {
+        const commentToEdit = comments.find(comment => comment._id === commentId);
+        
+        if (!commentToEdit) {
+            alert("Bình luận không tồn tại.");
+            return;
+        }
+    
+        const replyToEdit = commentToEdit.replies.find(reply => reply._id === replyId);
+        if (!replyToEdit) {
+            alert("Phản hồi không tồn tại.");
+            return;
+        }
+    
+        // Kiểm tra nếu người dùng không phải là chủ sở hữu của phản hồi
+        if (replyToEdit.username !== username && userRole !== "admin") {
+            alert("Bạn chỉ có thể chỉnh sửa phản hồi của chính mình!");
+            return;
+        }
+    
         try {
             const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
-                method: 'PUT',
+                method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ reply: newReply }),
             });
-            const data = await response.json();
+    
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-            // Cập nhật state để phản ánh sự thay đổi
-            setComments(prevComments => 
-                prevComments.map(comment => ({
-                    ...comment,
-                    replies: comment.replies.map(reply =>
-                        reply._id === replyId ? { ...reply, reply: newReply } : reply
-                    )
-                }))
+    
+            const data = await response.json();
+            console.log("Phản hồi đã chỉnh sửa:", data);
+    
+            // Cập nhật lại danh sách phản hồi
+            setComments((prevComments) =>
+                prevComments.map((comment) =>
+                    comment._id === commentId
+                        ? {
+                            ...comment,
+                            replies: comment.replies.map((reply) =>
+                                reply._id === replyId ? { ...reply, reply: newReply } : reply
+                            ),
+                        }
+                        : comment
+                )
             );
         } catch (error) {
-            console.error("Error editing reply:", error);
+            console.error("Lỗi khi chỉnh sửa phản hồi:", error);
         }
     };
+
     
-    const handleDeleteReply = async (replyId) => {
-        const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phản hồi này không?");
-        if (!confirmDelete) return;
-    
-        try {
-            const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
-                method: 'DELETE',
-            });
-    
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-    
-            // Cập nhật lại danh sách bình luận sau khi xóa phản hồi
-            setComments((prevComments) =>
-                prevComments.map((comment) => {
-                    // Tìm phản hồi nào chứa replyId và loại bỏ nó
+    const handleDeleteReply = async (replyId, commentId) => {
+    const replyToDelete = comments
+        .find(comment => comment._id === commentId)
+        ?.replies.find(reply => reply._id === replyId);
+
+    if (!replyToDelete) {
+        alert("Phản hồi không tồn tại.");
+        return;
+    }
+
+    // Kiểm tra quyền xóa
+    if (userRole !== "admin" && replyToDelete.username !== username) {
+        alert("Bạn chỉ có thể xóa phản hồi của chính mình!");
+        return;
+    }
+
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phản hồi này không?");
+    if (!confirmDelete) return;
+
+    try {
+        const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/reply/${replyId}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        // Cập nhật lại danh sách bình luận sau khi xóa phản hồi
+        setComments((prevComments) =>
+            prevComments.map((comment) => {
+                // Tìm và loại bỏ phản hồi đã bị xóa
+                if (comment._id === commentId) {
                     return {
                         ...comment,
                         replies: comment.replies.filter(reply => reply._id !== replyId),
                     };
-                })
-            );
-    
-        } catch (error) {
-            console.error("Error deleting reply:", error);
-        }
-    };
+                }
+                return comment;
+            })
+        );
+
+    } catch (error) {
+        console.error("Error deleting reply:", error);
+    }
+};
+
       
     const handleEditComment = async (commentId, newComment) => {
+        const commentToEdit = comments.find(comment => comment._id === commentId);
+        
+        if (!commentToEdit) {
+            alert("Bình luận không tồn tại.");
+            return;
+        }
+    
+        // Kiểm tra nếu người dùng không phải là chủ sở hữu của bình luận
+        if (commentToEdit.username !== username) {
+            alert("Bạn chỉ có thể chỉnh sửa bình luận của chính mình!");
+            return;
+        }
+    
         try {
             const response = await fetch(`https://da2-ghy9.onrender.com/api/comments/${commentId}`, {
                 method: "PUT",
