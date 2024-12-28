@@ -32,7 +32,7 @@ const Comment = ({ comment, onEdit, onDelete, onReply, onEditReply, onDeleteRepl
                     <p className="comment-username">
                         <img
                             className="comment-avatar"
-                            src={comment?.avatarUrl || 'https://flowbite.com/docs/images/people/profile-picture-2.jpg'} // Nếu không có ảnh đại diện, dùng ảnh mặc định
+                            src={comment?.avatarUrl || 'https://topdanangcity.com/wp-content/uploads/2024/09/avatar-trang-1Ob2zMM.jpg'} // Nếu không có ảnh đại diện, dùng ảnh mặc định
                             alt="User Avatar"
                         />
                         {comment?.username} {/* Hiển thị tên người dùng */}
